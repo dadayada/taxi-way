@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c8e832f71cb2dd6d7eadad8478f90874",
+    "revision": "ff7821d3f071d42b2bf7dcf1e602e089",
     "url": "/taxi-way/index.html"
   },
   {
-    "revision": "aee2efc8a817e27ef344",
+    "revision": "0cd87926a60e5f73d0fe",
     "url": "/taxi-way/static/css/main.6f694fae.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/taxi-way/static/js/2.457d710d.chunk.js"
   },
   {
-    "revision": "aee2efc8a817e27ef344",
-    "url": "/taxi-way/static/js/main.5080f9f7.chunk.js"
+    "revision": "0cd87926a60e5f73d0fe",
+    "url": "/taxi-way/static/js/main.48dd5c2e.chunk.js"
   },
   {
     "revision": "21e25e1034c3eed057b9",
