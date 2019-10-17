@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/taxi-way/static/css/main.6f694fae.chunk.css",
-    "main.js": "/taxi-way/static/js/main.89a471f7.chunk.js",
-    "main.js.map": "/taxi-way/static/js/main.89a471f7.chunk.js.map",
+    "main.js": "/taxi-way/static/js/main.b5d3d165.chunk.js",
+    "main.js.map": "/taxi-way/static/js/main.b5d3d165.chunk.js.map",
     "runtime~main.js": "/taxi-way/static/js/runtime~main.ad0ad32f.js",
     "runtime~main.js.map": "/taxi-way/static/js/runtime~main.ad0ad32f.js.map",
     "static/js/2.a64db63b.chunk.js": "/taxi-way/static/js/2.a64db63b.chunk.js",
     "static/js/2.a64db63b.chunk.js.map": "/taxi-way/static/js/2.a64db63b.chunk.js.map",
     "index.html": "/taxi-way/index.html",
-    "precache-manifest.df4c58f47fe72d64b5b9b72f8cf9c638.js": "/taxi-way/precache-manifest.df4c58f47fe72d64b5b9b72f8cf9c638.js",
+    "precache-manifest.1d507ee3c9276049197abfa63e9a4a57.js": "/taxi-way/precache-manifest.1d507ee3c9276049197abfa63e9a4a57.js",
     "service-worker.js": "/taxi-way/service-worker.js",
     "static/css/main.6f694fae.chunk.css.map": "/taxi-way/static/css/main.6f694fae.chunk.css.map"
   }
