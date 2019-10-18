@@ -1,13 +1,10 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/styles';
-import { Typography, Divider, IconButton, Box } from '@material-ui/core';
+import { Typography, Box, Grid } from '@material-ui/core';
 import { green, red } from '@material-ui/core/colors';
-import { PostAdd } from '@material-ui/icons';
 import { useStore } from 'effector-react';
-import { Link } from 'react-router-dom';
 
-import { $totalExpenses, $totalIncome } from '../core/records';
+import { $totalExpenses, $totalIncome, $profit } from '../core/records';
 
 const useStyles = makeStyles(theme => ({
   incomeText: {
@@ -24,37 +21,47 @@ export function HomePage() {
   const classes = useStyles();
   const totalIncome = useStore($totalIncome);
   const totalExpenses = useStore($totalExpenses);
+  const profit = useStore($profit);
   return (
-    <div>
-      <Typography variant="caption">Today {(new Date()).toLocaleDateString()}</Typography>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Typography align="center" variant="h4" cene>
-          Income
+    <Grid container>
+      <Grid item xs={4}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Typography align="center" variant="subtitle1">
+            Income
+          </Typography>
+        </Box>
+        <Typography className={classes.incomeText} align="center" variant="h4">
+          {totalIncome}
         </Typography>
-      </Box>
-      <Typography
-        className={classes.incomeText}
-        align="center"
-        variant="h4"
-      >
-        {totalIncome}
-      </Typography>
-
-      <Divider variant="middle" />
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Typography align="center" variant="h4" cene>
-          Expenses
+      </Grid>
+      <Grid item xs={4}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Typography align="center" variant="subtitle1">
+            Expenses
+          </Typography>
+        </Box>
+        <Typography
+          className={classes.spendingText}
+          align="center"
+          variant="h4"
+        >
+          {totalExpenses}
         </Typography>
-      </Box>
-      <Typography
-        className={classes.spendingText}
-        align="center"
-        variant="h4"
-        cene
-      >
-        {totalExpenses}
-      </Typography>
-      <Divider variant="middle" />
-    </div>
+      </Grid>
+      <Grid item xs={4}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Typography align="center" variant="subtitle1">
+            Profit
+          </Typography>
+        </Box>
+        <Typography
+          className={profit > 0 ? classes.incomeText : classes.spendingText}
+          align="center"
+          variant="h4"
+        >
+          {profit}
+        </Typography>
+      </Grid>
+    </Grid>
   );
 }

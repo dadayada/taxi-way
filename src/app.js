@@ -4,7 +4,6 @@ import { Routes } from './routes';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100vh',
     overflow: 'auto',
     padding: theme.spacing()
   }

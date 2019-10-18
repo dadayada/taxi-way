@@ -4,7 +4,7 @@ import {
   BottomNavigation as MUIBottomNavigation,
   BottomNavigationAction
 } from '@material-ui/core';
-import { PostAdd } from '@material-ui/icons';
+import { PostAdd, History, Home } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(() => ({
@@ -20,20 +20,22 @@ export function BottomNavigation() {
   return (
     <MUIBottomNavigation value={0} showLabels className={classes.root}>
       <BottomNavigationAction
-        label="New record"
-        icon={
-          <Link to="add-record">
-            <PostAdd />
-          </Link>
-        }
+        label="Main"
+        icon={<Home />}
+        component={Link}
+        to={process.env.PUBLIC_URL + '/'}
       />
-       <BottomNavigationAction
-        label="Pohuy"
-        icon={
-          <Link to="add-record">
-            <PostAdd />
-          </Link>
-        }
+      <BottomNavigationAction
+        label="New record"
+        icon={<PostAdd />}
+        component={Link}
+        to={process.env.PUBLIC_URL + '/add-record'}
+      />
+      <BottomNavigationAction
+        label="History"
+        icon={<History />}
+        component={Link}
+        to={process.env.PUBLIC_URL + '/history'}
       />
     </MUIBottomNavigation>
   );

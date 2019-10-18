@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Paper,
   RadioGroup,
   Radio,
   FormControl,
   FormLabel,
   FormControlLabel,
   TextField,
-  Button
+  Button,
+  Typography
 } from '@material-ui/core';
 import { useStore } from 'effector-react';
 import {
@@ -18,12 +18,24 @@ import {
   recordPushed
 } from './store';
 import { RECORD_TYPE } from '../../core/constants';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+  },
+  button: {
+    margin: `${theme.spacing() * 2}px 0px`
+  }
+}));
 
 export function AddRecordScreen() {
   const recordType = useStore($type);
   const recordValue = useStore($recordValue);
+  const classes = useStyles();
   return (
-    <FormControl>
+    <FormControl className={classes.root}>
+      <Typography align="center" variant="h4">New record</Typography>
       <FormLabel component="legend">Type</FormLabel>
       <RadioGroup
         value={recordType}
@@ -47,7 +59,12 @@ export function AddRecordScreen() {
         value={recordValue}
         onChange={e => recordValueChanged(e.target.value)}
       />
-      <Button variant="contained" color="primary" onClick={recordPushed}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={recordPushed}
+        className={classes.button}
+      >
         Add
       </Button>
     </FormControl>

@@ -19,7 +19,7 @@ const recordPushRequested = sample(
   store => ({ ...store, added: new Date().toISOString() })
 );
 
-recordPushRequested.watch(() => history.goBack());
+recordPushRequested.watch(() => history.push('/'));
 
 $type.reset(recordPushRequested);
 $recordValue.reset(recordPushRequested);
