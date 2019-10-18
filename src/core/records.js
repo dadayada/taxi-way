@@ -1,9 +1,9 @@
 import { createStore, createEvent } from 'effector';
-import { recordPushRequested } from '../screens/add-record';
 import { RECORD_TYPE } from './constants';
 import { addDataToLocalStorage, getDataFromLocalStorage } from '../persistence';
 
-const removeRecord = createEvent();
+export const removeRecord = createEvent();
+export const recordAdded = createEvent();
 
 /*
   type Record {
@@ -14,8 +14,8 @@ const removeRecord = createEvent();
 */
 
 export const $records = createStore(getDataFromLocalStorage())
-  .on(recordPushRequested, (s, p) => [...s, p])
-  .on(removeRecord, (s, p) => s.filter(el => el.added !== p.added));
+  .on(recordAdded, (s, p) => [...s, p])
+  .on(removeRecord, (s, p) => s.filter(el => el.added !== p));
 
 $records.watch(addDataToLocalStorage);
 
