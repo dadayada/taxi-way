@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/taxi-way/static/css/main.6f694fae.chunk.css",
-    "main.js": "/taxi-way/static/js/main.deea8e38.chunk.js",
-    "main.js.map": "/taxi-way/static/js/main.deea8e38.chunk.js.map",
+    "main.js": "/taxi-way/static/js/main.43752c40.chunk.js",
+    "main.js.map": "/taxi-way/static/js/main.43752c40.chunk.js.map",
     "runtime~main.js": "/taxi-way/static/js/runtime~main.ad0ad32f.js",
     "runtime~main.js.map": "/taxi-way/static/js/runtime~main.ad0ad32f.js.map",
-    "static/js/2.457d710d.chunk.js": "/taxi-way/static/js/2.457d710d.chunk.js",
-    "static/js/2.457d710d.chunk.js.map": "/taxi-way/static/js/2.457d710d.chunk.js.map",
+    "static/js/2.57863645.chunk.js": "/taxi-way/static/js/2.57863645.chunk.js",
+    "static/js/2.57863645.chunk.js.map": "/taxi-way/static/js/2.57863645.chunk.js.map",
     "index.html": "/taxi-way/index.html",
-    "precache-manifest.b3cc726e1f27c7ce265e5cf074e731c7.js": "/taxi-way/precache-manifest.b3cc726e1f27c7ce265e5cf074e731c7.js",
+    "precache-manifest.9715f37aad7c1636ad7cfe02574e91eb.js": "/taxi-way/precache-manifest.9715f37aad7c1636ad7cfe02574e91eb.js",
     "service-worker.js": "/taxi-way/service-worker.js",
     "static/css/main.6f694fae.chunk.css.map": "/taxi-way/static/css/main.6f694fae.chunk.css.map"
   }
