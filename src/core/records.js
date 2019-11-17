@@ -4,6 +4,7 @@ import { addDataToLocalStorage, getDataFromLocalStorage } from '../persistence';
 
 export const removeRecord = createEvent();
 export const recordAdded = createEvent();
+export const recordChanged = createEvent();
 
 /*
   type Record {
@@ -15,7 +16,8 @@ export const recordAdded = createEvent();
 
 export const $records = createStore(getDataFromLocalStorage())
   .on(recordAdded, (s, p) => [...s, p])
-  .on(removeRecord, (s, p) => s.filter(el => el.added !== p));
+  .on(removeRecord, (s, p) => s.filter(el => el.added !== p))
+  .on(recordChanged, (s, p) => s.map(el => (el.added === p.added ? p : el)));
 
 $records.watch(addDataToLocalStorage);
 

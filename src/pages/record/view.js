@@ -8,9 +8,6 @@ import {
   TextField,
   Button,
   Typography,
-  Dialog,
-  DialogContent,
-  DialogActions
 } from '@material-ui/core'
 import { useStore } from 'effector-react'
 import {
@@ -18,7 +15,7 @@ import {
   recordTypeChanged,
   $recordValue,
   recordValueChanged,
-  addRecordBtnClicked,
+  saveRecordRequsted,
 } from './store'
 import { RECORD_TYPE } from '../../core/constants'
 import { makeStyles } from '@material-ui/styles'
@@ -41,7 +38,7 @@ export function RecordScreen(props) {
     <>
       <FormControl className={classes.root}>
         <Typography align="center" variant="h4">
-          {recordIsCreating ? 'New record' : 'Edit record'}
+          {recordIsCreating ? 'New transaction' : 'Edit transaction'}
         </Typography>
         <FormLabel component="legend">Type</FormLabel>
         <RadioGroup
@@ -69,19 +66,12 @@ export function RecordScreen(props) {
         <Button
           variant="contained"
           color="primary"
-          onClick={addRecordBtnClicked}
+          onClick={saveRecordRequsted}
           className={classes.button}
         >
           {recordIsCreating ? 'Add' : 'Save'}
         </Button>
       </FormControl>
-      <Dialog>
-        <DialogContent>Are you sure you want remove this record?</DialogContent>
-        <DialogActions>
-          <Button>Remove</Button>
-          <Button>Cancel</Button>
-        </DialogActions>
-      </Dialog>
     </>
   )
 }
