@@ -37,6 +37,8 @@ export function HistoryScreen() {
   const records = useStore($records);
   const modalOpen = useStore($modalOpen);
   const classes = useStyles();
+
+  
   return (
     <>
       {' '}
@@ -64,7 +66,7 @@ export function HistoryScreen() {
             <IconButton onClick={() => removeBtnClicked(record.added)}>
               <Delete />
             </IconButton>
-            <Link to="/edit-record">
+            <Link to={`/edit-record/${record.added}`}>
               <IconButton>
                 <Edit />
               </IconButton>

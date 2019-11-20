@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   RadioGroup,
   Radio,
@@ -7,18 +8,20 @@ import {
   FormControlLabel,
   TextField,
   Button,
-  Typography,
-} from '@material-ui/core'
-import { useStore } from 'effector-react'
+  Typography
+} from '@material-ui/core';
+import { useStore } from 'effector-react';
 import {
   $type,
+  $error,
   recordTypeChanged,
   $recordValue,
   recordValueChanged,
   saveRecordRequsted,
-} from './store'
-import { RECORD_TYPE } from '../../core/constants'
-import { makeStyles } from '@material-ui/styles'
+  editRecordPageRequested
+} from './store';
+import { RECORD_TYPE } from '../../core/constants';
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,14 +29,26 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     margin: `${theme.spacing() * 2}px 0px`
+  },
+  error: {
+    color: 'red'
   }
-}))
+}));
 
 export function RecordScreen(props) {
-  const { recordIsCreating } = props
-  const recordType = useStore($type)
-  const recordValue = useStore($recordValue)
-  const classes = useStyles()
+  const { recordIsCreating } = props;
+  const recordType = useStore($type);
+  const recordValue = useStore($recordValue);
+  const error = useStore($error);
+  const classes = useStyles();
+  const params = useParams();
+
+  useEffect(() => {
+    if (params.added) {
+      editRecordPageRequested(params.added);
+    }
+  }, []);
+
   return (
     <>
       <FormControl className={classes.root}>
@@ -57,12 +72,19 @@ export function RecordScreen(props) {
           />
         </RadioGroup>
         <TextField
+          autoFocus
+          error={Boolean(error)}
           label="Value"
           placeholder="Enter value"
           type="number"
           value={recordValue}
           onChange={e => recordValueChanged(e.target.value)}
         />
+        {error && (
+          <Typography variant="caption" className={classes.error}>
+            {error}
+          </Typography>
+        )}
         <Button
           variant="contained"
           color="primary"
@@ -73,5 +95,5 @@ export function RecordScreen(props) {
         </Button>
       </FormControl>
     </>
-  )
+  );
 }

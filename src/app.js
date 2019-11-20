@@ -20,7 +20,7 @@ export const Routes = () => (
       <Route path={process.env.PUBLIC_URL + '/add-record'}>
         <RecordScreen recordIsCreating/>
       </Route>
-      <Route path={process.env.PUBLIC_URL + '/edit-record'}>
+      <Route path={process.env.PUBLIC_URL + '/edit-record/:added'}>
         <RecordScreen />
       </Route>
       <Route path={process.env.PUBLIC_URL + '/history'}>
