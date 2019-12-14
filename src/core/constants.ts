@@ -1,0 +1,4 @@
+export enum RECORD_TYPE {
+  INCOME = 'INCOME',
+  EXPENSE = 'EXPENSE'
+};

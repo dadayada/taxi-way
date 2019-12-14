@@ -17,7 +17,7 @@ import { RECORD_TYPE } from '../../core/constants';
 import { $records } from '../../core/records';
 import { $modalOpen, removeBtnClicked, removeCancelled, removeConfirmed } from './store'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({ 
   incomeText: {
     color: green[700],
     fontWeight: 'bold'
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignContent: 'center'
   }
-}));
+});
 
 export function HistoryScreen() {
   const records = useStore($records);
@@ -47,8 +47,7 @@ export function HistoryScreen() {
           <div className={classes.content}>
             <div>
               <Typography align="center">
-                {new Date(record.added).toLocaleDateString()},{' '}
-                {new Date(record.added).toLocaleTimeString()}
+                {new Date(record.added).toLocaleDateString()}
               </Typography>
               <Typography
                 align="center"

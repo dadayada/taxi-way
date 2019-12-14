@@ -2,10 +2,10 @@ import { createBrowserHistory } from 'history';
 import { createStore, createEvent } from 'effector';
 
 export const history = createBrowserHistory({
-  baseName: process.env.PUBLIC_URL
+  basename: process.env.PUBLIC_URL
 });
 
-export const locationChanged = createEvent();
+export const locationChanged = createEvent<any>();
 history.listen(locationChanged);
-export const $location = createStore(history.location).on(locationChanged, (_, p) => p);
+export const $location = createStore<any>(history.location).on(locationChanged, (_, p) => p);
 

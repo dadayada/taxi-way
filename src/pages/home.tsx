@@ -1,12 +1,38 @@
 import React from 'react';
+import { createEvent, restore } from 'effector'
 import { makeStyles } from '@material-ui/styles';
 import { Typography, Box, Grid } from '@material-ui/core';
 import { green, red } from '@material-ui/core/colors';
 import { useStore } from 'effector-react';
+import { isToday } from 'date-fns';
 
-import { $totalExpenses, $totalIncome, $profit } from '../core/records';
+import { $records } from '../core/records';
+import { RECORD_TYPE } from '../core/constants';
+import { combine } from 'effector';
 
-const useStyles = makeStyles(theme => ({
+const $todaysRecords = $records.map(records =>
+  records.filter(record => isToday(new Date(record.added)))
+);
+
+const $todaysDebit = $todaysRecords.map(records =>
+  records
+    .filter(record => record.type === RECORD_TYPE.EXPENSE)
+    .reduce((acc, record) => record.value + acc, 0)
+);
+
+const $todaysCredit = $todaysRecords.map(records =>
+  records
+    .filter(record => record.type === RECORD_TYPE.INCOME)
+    .reduce((acc, record) => record.value + acc, 0)
+);
+
+const $todayBalance = combine(
+  $todaysDebit,
+  $todaysCredit,
+  (debit, credit) => credit - debit
+);
+
+const useStyles = makeStyles({
   incomeText: {
     color: green[700],
     fontWeight: 'bold'
@@ -15,19 +41,22 @@ const useStyles = makeStyles(theme => ({
     color: red[700],
     fontWeight: 'bold'
   }
-}));
+});
 
 export function HomePage() {
   const classes = useStyles();
-  const totalIncome = useStore($totalIncome);
-  const totalExpenses = useStore($totalExpenses);
-  const profit = useStore($profit);
+  const totalIncome = useStore($todaysCredit);
+  const totalExpenses = useStore($todaysDebit);
+  const profit = useStore($todayBalance);
   return (
     <Grid container>
+      <Grid item xs={12}>
+        <Typography align="center">Today's transactions:</Typography>
+      </Grid>
       <Grid item xs={4}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Typography align="center" variant="subtitle1">
-            Income
+          <Typography align="center" variant="caption">
+            Credit
           </Typography>
         </Box>
         <Typography className={classes.incomeText} align="center" variant="h4">
@@ -36,8 +65,8 @@ export function HomePage() {
       </Grid>
       <Grid item xs={4}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Typography align="center" variant="subtitle1">
-            Expenses
+          <Typography align="center" variant="caption">
+            Debit
           </Typography>
         </Box>
         <Typography
@@ -50,8 +79,8 @@ export function HomePage() {
       </Grid>
       <Grid item xs={4}>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Typography align="center" variant="subtitle1">
-            Profit
+          <Typography align="center" variant="caption">
+            Balance
           </Typography>
         </Box>
         <Typography

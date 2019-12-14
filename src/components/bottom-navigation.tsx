@@ -4,16 +4,16 @@ import {
   BottomNavigation as MUIBottomNavigation,
   BottomNavigationAction
 } from '@material-ui/core';
-import { PostAdd, History, Home } from '@material-ui/icons';
+import { PostAdd, History, Home, ShowChart } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   root: {
     position: 'fixed',
     bottom: 0,
     width: '100%'
   }
-}));
+});
 
 export function BottomNavigation() {
   const classes = useStyles();
@@ -34,6 +34,12 @@ export function BottomNavigation() {
       <BottomNavigationAction
         label="History"
         icon={<History />}
+        component={Link}
+        to={process.env.PUBLIC_URL + '/history'}
+      />
+       <BottomNavigationAction
+        label="Anaytics"
+        icon={<ShowChart />}
         component={Link}
         to={process.env.PUBLIC_URL + '/history'}
       />

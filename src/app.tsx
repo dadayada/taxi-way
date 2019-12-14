@@ -1,16 +1,17 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
+import { Theme } from '@material-ui/core'
 import { HomePage } from './pages/home';
 import { RecordScreen } from './pages/record';
 import { BottomNavigation } from './components/bottom-navigation';
 import { HistoryScreen } from './pages/history';
 import { history } from './routing';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     overflow: 'auto',
-    padding: theme.spacing()
+    padding: theme.spacing(),
   }
 }));
 

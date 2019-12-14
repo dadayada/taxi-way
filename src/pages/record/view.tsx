@@ -18,12 +18,12 @@ import {
   $recordValue,
   recordValueChanged,
   saveRecordRequsted,
-  editRecordPageRequested
+  editRecordPageMounted
 } from './store';
 import { RECORD_TYPE } from '../../core/constants';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: any) => ({
   root: {
     width: '100%'
   },
@@ -35,17 +35,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export function RecordScreen(props) {
+export function RecordScreen(props: any) {
   const { recordIsCreating } = props;
   const recordType = useStore($type);
   const recordValue = useStore($recordValue);
   const error = useStore($error);
   const classes = useStyles();
-  const params = useParams();
+  const params = useParams<any>();
 
   useEffect(() => {
     if (params.added) {
-      editRecordPageRequested(params.added);
+      editRecordPageMounted(params.added);
     }
   }, []);
 
@@ -58,7 +58,7 @@ export function RecordScreen(props) {
         <FormLabel component="legend">Type</FormLabel>
         <RadioGroup
           value={recordType}
-          onChange={e => recordTypeChanged(e.target.value)}
+          onChange={e => recordTypeChanged(e.target.value as RECORD_TYPE)}
         >
           <FormControlLabel
             control={<Radio />}
@@ -88,7 +88,7 @@ export function RecordScreen(props) {
         <Button
           variant="contained"
           color="primary"
-          onClick={saveRecordRequsted}
+          onClick={saveRecordRequsted as any}
           className={classes.button}
         >
           {recordIsCreating ? 'Add' : 'Save'}

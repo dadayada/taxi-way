@@ -12,30 +12,34 @@ import { RECORD_TYPE } from '../../core/constants';
 import { recordAdded, recordChanged, $records } from '../../core/records';
 import { guardShape } from '../../util';
 
-const recordTypeChanged = createEvent();
-const recordValueChanged = createEvent();
+const recordTypeChanged = createEvent<RECORD_TYPE>();
+const recordValueChanged = createEvent<string>();
 const saveRecordRequsted = createEvent();
-const editRecordPageRequested = createEvent();
+const editRecordPageMounted = createEvent<string>();
 
 const recordToEditPicked = sample({
   source: $records,
-  clock: editRecordPageRequested,
+  clock: editRecordPageMounted,
   fn: (records, recordAdded) => records.find(el => el.added === recordAdded)
 });
 
-const $type = createStore(RECORD_TYPE.INCOME)
+const existedRecordToEditPicked = recordToEditPicked.filterMap(record => Boolean(record) ? record : undefined);
+
+const recordToEdit = restore(existedRecordToEditPicked, null);
+
+const $type = createStore<RECORD_TYPE>(RECORD_TYPE.INCOME)
   .on(recordTypeChanged, (_, p) => p)
-  .on(recordToEditPicked, (_, { type }) => type);
+  .on(existedRecordToEditPicked, (_, { type }) => type);
 
 const $recordValue = createStore('')
   .on(recordValueChanged, (_, p) => p)
-  .on(recordToEditPicked, (_, { value }) => value);
+  .on(existedRecordToEditPicked, (_, { value }) => String(value));
 
 const recordToSavePrepared = sample(
   createStoreObject({
     type: $type,
     value: $recordValue,
-    recordToEdit: restore(recordToEditPicked, null)
+    recordToEdit
   }),
   saveRecordRequsted,
   ({ recordToEdit, type, value }) =>
@@ -51,10 +55,10 @@ const recordToSaveValidated = split(recordToSavePrepared, {
 
 guardShape(recordToSaveValidated.recordValid, {
   target: { recordAdded, recordChanged },
-  data: restore(recordToEditPicked, null),
+  data: recordToEdit,
   filter: {
-    recordAdded: recordToEdit => !recordToEdit,
-    recordChanged: recordToEdit => recordToEdit
+    recordAdded: recordToEdit => !Boolean(recordToEdit),
+    recordChanged: recordToEdit => Boolean(recordToEdit),
   }
 });
 
@@ -75,5 +79,5 @@ export {
   $recordValue,
   $error,
   saveRecordRequsted,
-  editRecordPageRequested
+  editRecordPageMounted
 };
