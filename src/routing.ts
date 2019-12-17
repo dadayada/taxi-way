@@ -1,7 +1,7 @@
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import { createStore, createEvent } from 'effector';
 
-export const history = createBrowserHistory({
+export const history = createHashHistory({
   basename: process.env.PUBLIC_URL
 });
 

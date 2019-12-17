@@ -45,7 +45,7 @@ export function RecordScreen(props: any) {
 
   useEffect(() => {
     if (params.added) {
-      editRecordPageMounted(params.added);
+      editRecordPageMounted(Number(params.added));
     }
   }, []);
 

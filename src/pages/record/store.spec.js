@@ -2,7 +2,7 @@ import {
   $error,
   $recordValue,
   $type,
-  editRecordPageRequested,
+  editRecordPageMounted,
   recordValueChanged,
   saveRecordRequsted
 } from './store';
@@ -30,7 +30,7 @@ describe('record view store', () => {
   })
 
   test('should call recordAdded if data is valid', () => {
-    recordValueChanged('sad')
+    recordValueChanged('15')
     saveRecordRequsted();
     expect(addedSpy).toHaveBeenCalled();
   });
@@ -43,8 +43,8 @@ describe('record view store', () => {
   test('should call recordChanged if editRecordPageRequested was caled', () => {
     const recordId = (new Date()).toISOString();
     $records.setState([{ added: recordId  }]);
-    editRecordPageRequested(recordId);
-    recordValueChanged('sad')
+    editRecordPageMounted(recordId);
+    recordValueChanged('15')
     saveRecordRequsted();
     expect(changedSpy).toHaveBeenCalled();
   })
@@ -52,7 +52,7 @@ describe('record view store', () => {
   test('should set $recordValue to record value if editRecordPageRequested was caled', () => {
     const recordId = (new Date()).toISOString();
     $records.setState([{ added: recordId, value: 'test'  }]);
-    editRecordPageRequested(recordId);
+    editRecordPageMounted(recordId);
     expect($recordValue.getState()).toBe('test');
   });
 });

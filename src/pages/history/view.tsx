@@ -13,11 +13,17 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import { green, red } from '@material-ui/core/colors';
 import { Delete, Edit } from '@material-ui/icons';
+import { fromUnixTime } from 'date-fns'
 import { RECORD_TYPE } from '../../core/constants';
-import { $records } from '../../core/records';
-import { $modalOpen, removeBtnClicked, removeCancelled, removeConfirmed } from './store'
+import {
+  $modalOpen,
+  $recordsForHistory,
+  removeBtnClicked,
+  removeCancelled,
+  removeConfirmed
+} from './store';
 
-const useStyles = makeStyles({ 
+const useStyles = makeStyles({
   incomeText: {
     color: green[700],
     fontWeight: 'bold'
@@ -34,20 +40,17 @@ const useStyles = makeStyles({
 });
 
 export function HistoryScreen() {
-  const records = useStore($records);
+  const records = useStore($recordsForHistory);
   const modalOpen = useStore($modalOpen);
   const classes = useStyles();
-
-  
   return (
     <>
-      {' '}
       {records.map(record => (
         <div key={record.added}>
           <div className={classes.content}>
             <div>
               <Typography align="center">
-                {new Date(record.added).toLocaleDateString()}
+                {fromUnixTime(record.added).toLocaleDateString()}
               </Typography>
               <Typography
                 align="center"

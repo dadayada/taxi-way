@@ -5,5 +5,5 @@ export function addDataToLocalStorage(data: any) {
 }
 
 export function getDataFromLocalStorage() {
-  return JSON.parse(window.localStorage.getItem(localStorageKey) || '') || [];
+  return JSON.parse(window.localStorage.getItem(localStorageKey) || '[]') || [];
 }

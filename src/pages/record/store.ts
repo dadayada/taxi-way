@@ -7,6 +7,7 @@ import {
   split,
   merge
 } from 'effector';
+import { getUnixTime } from 'date-fns';
 import { history, locationChanged } from '../../routing';
 import { RECORD_TYPE } from '../../core/constants';
 import { recordAdded, recordChanged, $records } from '../../core/records';
@@ -15,7 +16,7 @@ import { guardShape } from '../../util';
 const recordTypeChanged = createEvent<RECORD_TYPE>();
 const recordValueChanged = createEvent<string>();
 const saveRecordRequsted = createEvent();
-const editRecordPageMounted = createEvent<string>();
+const editRecordPageMounted = createEvent<number>();
 
 const recordToEditPicked = sample({
   source: $records,
@@ -45,7 +46,7 @@ const recordToSavePrepared = sample(
   ({ recordToEdit, type, value }) =>
     recordToEdit
       ? { type, value: Number(value), added: recordToEdit.added }
-      : { type, value: Number(value), added: new Date().toISOString() }
+      : { type, value: Number(value), added: getUnixTime(new Date()) }
 );
 
 const recordToSaveValidated = split(recordToSavePrepared, {
