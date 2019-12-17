@@ -18,16 +18,16 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const Routes = () => (
   <Router history={history}>
     <Switch>
-      <Route path={process.env.PUBLIC_URL + '/add-record'}>
+      <Route path='/add-record'>
         <RecordScreen recordIsCreating/>
       </Route>
-      <Route path={process.env.PUBLIC_URL + '/edit-record/:added'}>
+      <Route path='/edit-record/:added'>
         <RecordScreen />
       </Route>
-      <Route path={process.env.PUBLIC_URL + '/history'}>
+      <Route path='/history'>
         <HistoryScreen />
       </Route>
-      <Route path={process.env.PUBLIC_URL + '/'}>
+      <Route path='/'>
         <HomePage />
       </Route>
     </Switch>

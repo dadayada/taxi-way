@@ -23,25 +23,25 @@ export function BottomNavigation() {
         label="Main"
         icon={<Home />}
         component={Link}
-        to={process.env.PUBLIC_URL + '/'}
+        to='/'
       />
       <BottomNavigationAction
         label="New record"
         icon={<PostAdd />}
         component={Link}
-        to={process.env.PUBLIC_URL + '/add-record'}
+        to='/add-record'
       />
       <BottomNavigationAction
         label="History"
         icon={<History />}
         component={Link}
-        to={process.env.PUBLIC_URL + '/history'}
+        to='/history'
       />
        <BottomNavigationAction
         label="Anaytics"
         icon={<ShowChart />}
         component={Link}
-        to={process.env.PUBLIC_URL + '/history'}
+        to='/history'
       />
     </MUIBottomNavigation>
   );
