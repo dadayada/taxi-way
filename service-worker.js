@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/taxi-way/precache-manifest.9715f37aad7c1636ad7cfe02574e91eb.js"
+  "/taxi-way/precache-manifest.fea43e2b5fbc1df199224017c8b9482f.js"
 );
 
 self.addEventListener('message', (event) => {
